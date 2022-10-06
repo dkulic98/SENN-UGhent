@@ -22,7 +22,6 @@ dxI = dx(index);
 x = dxI./2+[0; cumsum(dxI(1:end-1))];   % coordinates of potentials (mm)
 
 %   rectangular
-% Vxt matrix before: s.Vxt = [zeros(22, ceil(simulation_dur/dt)+1); zeros(1, ceil(onset/dt)) ones(1, ceil(pulse_dur/dt)) zeros(1, ceil((simulation_dur-onset-pulse_dur)/dt)+1)];
 onset = 0.01;
 s.Vxt = [t; zeros(1, ceil(onset/dt)) ones(1, ceil(pulse_dur/dt)) zeros(1, ceil((simulation_dur-onset-pulse_dur)/dt)+1)]';
 figure(1);
@@ -47,11 +46,6 @@ f = i * 1000;
 dt = 1/(40*f);
 t = 0:dt:0.05;
 s.Waveform = [t; sin(2*pi*f*t)]';  
-% figure(3);
-% plot(s.Waveform(:,1),s.Waveform(:,2))  
-% title ('Sinusoidal signal')  
-% xlabel('Time (s)');  
-% ylabel('Amplitude (V/m)');
 save("combined"+string(i)+".mat","s");
 
 onset = 0.0035;
@@ -102,9 +96,3 @@ dt = 1/(40*f);
 t = 0:dt:0.05;
 s.Waveform = [t; sin(2*pi*f*t)]';  
 save("combined"+string(i)+".mat","s");
-
-% for sine:
-% Ve = (-1)^(Iancat-1).*IIelecs.*gmultiply(fnameStruct.s.V{LLconf},Waveform');
-% for monophasic: probably don't need this because there is no combination
-% of Waveform and V, only a single matrix
-% Ve = (-1)^(Iancat-1).*IIelecs.*fnameStruct.s.Vxt;
