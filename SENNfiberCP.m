@@ -22,7 +22,7 @@ function SENNfiberCP(Diamet,Ltot,x,y,z,Tp,ancat,monbi,Ibegin,Iend,SearchMode,Swe
  if nargin >= 26, lltol = str2double(varargin{8}); llDynTol = str2double(varargin{9}); end  
 %  PLOT = 1;
  if nargin >= 27, PLOT = str2double(varargin{10}); end
- if nargin >= 28, fileNameMode = str2double(varargin{11}); end  % 1 = separate waveform and the potential distribution V(x,t)=X(x)*T(t), 2 = general V(x,t)
+ if nargin >= 28, fileNameMode = str2double(varargin{11}); end  % 1 = separate waveform and the potential distribution, 2 = general waveform
  if nargin >= 29, sinus_amplitude = str2double(varargin{12}); end
  
 tic;                            % Start stopwatch timer
@@ -94,8 +94,8 @@ Cm = [repmat([Cnode;Cinter],reps,1);Cnode];  % Membrane capacitance per unit are
                                 % --> Universal membrane capacitance is used.
 CFL = 1;                        % Courant number
 c = 100;          % Travelspeed of electric impulses through the neuron (m/s)
-%Temp = 37*ones(C,1);        % Temperature (°C)
-Temp = 22*ones(C,1);        % Temperature (°C), Reilly SENN
+%Temp = 37*ones(C,1);        % Temperature (Â°C)
+Temp = 22*ones(C,1);        % Temperature (Â°C), Reilly SENN
 tol = 1e-50;                    % Tolerance used in matlab fsolve (default is 1e-6)
 DynTol = 1e-50;                  % Dynamic tolerance used in Matlab fsolve (if 0, use abs. tol)
 if nargin >= 26
